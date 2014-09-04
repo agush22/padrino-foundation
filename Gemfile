@@ -16,6 +16,7 @@ gem 'rake'
 # Component requirements
 gem 'carrierwave'
 gem 'carrierwave-sequel', :require => 'carrierwave/sequel'
+gem 'rmagick', :require => 'RMagick'
 gem 'bcrypt'
 gem 'sass'
 gem 'erubis', '~> 2.7.0'

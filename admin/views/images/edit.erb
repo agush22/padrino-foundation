@@ -4,7 +4,7 @@
   <li class="active"> <%= link_to tag_icon(:edit, pat(:edit)), url(:images, :edit, :id => @image.id) %></li>
 </ul>
 <div class="tabs-content">
-  <% form_for :image, url(:images, :update, :id => @image.id), :method => :put, :class => 'form-horizontal' do |f| %>
+  <% form_for :image, url(:images, :update, :id => @image.id), :method => :put, :class => 'form-horizontal', :multipart => true do |f| %>
     <%= partial 'images/form', :locals => { :f => f } %>
   <% end %>
 </div>

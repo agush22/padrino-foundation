@@ -36,41 +36,42 @@
             </ul>
           </div>
         </th>
-                <th class=header> <%= mat(:image, :id) %></th>
+                <th class=header> <%= mat(:project, :name) %></th>
                 <th class=header> <%= mat(:image, :file) %></th>
                 <th class=header> <%= mat(:image, :name) %></th>
                 <th class=header> <%= mat(:image, :caption) %></th>
-                <th class=header> <%= mat(:image, :created_at) %></th>
                 <th class="header list-row-action-header"></th>
     </thead>
 
     <tbody>
-      <% @images.each do |image| %>
-        <tr class=list-row>
-          <td class="list-column list-selectable">
-            <%= check_box_tag 'image_ids[]', :value => image.id, :class => 'list-selectable-checkbox' %>
-           </td>
-          <td class=list-column> <%= image.id %> </td>
-          <td class=list-column> <%= image.file %> </td>
-          <td class=list-column> <%= image.name %> </td>
-          <td class=list-column> <%= image.caption %> </td>
-          <td class=list-column> <%= image.created_at %> </td>
-          <td class="list-column list-row-action">
-            <div class='list-row-action-wrapper'>
-               <%= link_to tag_icon(:edit), :href => url(:images, :edit, :id => image.id), :rel => :tooltip, :title => "#{pat(:edit)} image", :class => 'list-row-action-wrapper-link' %>
-               <%= link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} image", :class => 'list-row-action-delete-one list-row-action-wrapper-link' %>
-               <div class="popover list-row-action-popover-delete-one left">
-                 <div class=arrow> </div>
-                 <h3 class=popover-title><%= pat(:delete, :model => "image") %></h3>
-                 <div class=popover-content>
-                   <%- form_tag url(:images, :destroy, :id => image.id), :method => :delete do %>
-                     <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
-                     <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
-                   <% end %>
-               </div>
-             </div>
-          </td>
-      <% end %>
+    <% @images.each do |image| %>
+      <tr class=list-row>
+        <td class="list-column list-selectable">
+          <%= check_box_tag 'image_ids[]', :value => image.id, :class => 'list-selectable-checkbox' %>
+        </td>
+        <td class=list-column> <%= image.project.name %> </td>
+        <td class=list-column> <%= image_tag image.file_url.to_s, :width=>'100px', :height=>'100px'%> </td>
+        <td class=list-column> <%= image.name %> </td>
+        <td class=list-column> <%= image.caption %> </td>
+        <td class=list-column> <%= image.created_at %> </td>
+        <td class="list-column list-row-action">
+          <div class='list-row-action-wrapper'>
+            <%= link_to tag_icon(:edit), :href => url(:images, :edit, :id => image.id), :rel => :tooltip, :title => "#{pat(:edit)} image", :class => 'list-row-action-wrapper-link' %>
+            <%= link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} image", :class => 'list-row-action-delete-one list-row-action-wrapper-link' %>
+            <div class="popover list-row-action-popover-delete-one left">
+              <div class=arrow> </div>
+              <h3 class=popover-title><%= pat(:delete, :model => "image") %></h3>
+              <div class=popover-content>
+                <%- form_tag url(:images, :destroy, :id => image.id), :method => :delete do %>
+                  <%= submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small' %>
+                <div class="btn btn-default btn-small cancel"><%= pat(:cancel) %></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
     </tbody>
   </table>
 </div>

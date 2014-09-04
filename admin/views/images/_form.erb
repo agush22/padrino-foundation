@@ -1,4 +1,5 @@
 <% error = @image.errors.key?(:file) && @image.errors[:file].count > 0 %>
+
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :project_id, :class => 'control-label' %>
   <div class='controls'>
@@ -8,7 +9,7 @@
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :file, :class => 'control-label' %>
   <div class='controls'>
-    <%= f.text_area :file, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
+    <%= f.file_field :file, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>
     <span class='help-inline'><%= error ? f.error_message_on(:file) : "Ex: a simple text" %></span>
   </div>
 </fieldset>
