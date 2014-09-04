@@ -1,5 +1,11 @@
 <% error = @image.errors.key?(:file) && @image.errors[:file].count > 0 %>
 <fieldset class='control-group <%= error ? 'has-error' : ''%>'>
+  <%= f.label :project_id, :class => 'control-label' %>
+  <div class='controls'>
+    <%= f.select(:project_id, :options => @projects.collect {|p| [p.name, p.id] })%>
+  </div>
+</fieldset>
+<fieldset class='control-group <%= error ? 'has-error' : ''%>'>
   <%= f.label :file, :class => 'control-label' %>
   <div class='controls'>
     <%= f.text_area :file, :class => 'form-control input-xlarge input-with-feedback', :autofocus => true %>

@@ -8,6 +8,7 @@ Roca::Admin.controllers :images do
   get :new do
     @title = pat(:new_title, :model => 'image')
     @image = Image.new
+    @projects= Project.all
     render 'images/new'
   end
 
@@ -28,6 +29,7 @@ Roca::Admin.controllers :images do
     @title = pat(:edit_title, :model => "image #{params[:id]}")
     @image = Image[params[:id]]
     if @image
+      @projects = Project.all
       render 'images/edit'
     else
       flash[:warning] = pat(:create_error, :model => 'image', :id => "#{params[:id]}")
